@@ -11,6 +11,7 @@
     "antd": "^3.11.1",
     "axios": "^0.18.0",
     "dva": "^2.4.1",
+    "path-to-regexp": "^2.4.0",
     "query-string": "^6.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -34,14 +35,7 @@
       "react-app"
     ],
     "plugins": [
-      [
-        "import",
-        {
-          "libraryName": "antd",
-          "libraryDirectory": "lib",
-          "style": true
-        }
-      ]
+      
     ]
   }
 }

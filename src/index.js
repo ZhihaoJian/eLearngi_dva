@@ -1,4 +1,6 @@
 import dva from 'dva';
+import './index.css';
+import 'antd/dist/antd.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
 import createHistory from 'history/createBrowserHistory';
 // 1. Initialize
@@ -10,7 +12,7 @@ const app = dva({
 // app.use({});
 
 // 3. Model
-app.model(require('./models/login').default);
+// app.model();
 
 // 4. Router
 app.router(require('./router').default);

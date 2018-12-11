@@ -1,29 +1,29 @@
-$header-hover-color:#e6f7ff;
-$header-icon-padding:0 12px;
+@header-hover-color:#e6f7ff;
+@header-icon-padding:0 12px;
 .header {
     background: #fff;
     padding: 0;
     margin-bottom: 1px;
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
     .opera-container {
-        padding: $header-icon-padding;
+        padding: @header-icon-padding;
         float: right;
         .header-search {
             vertical-align: middle;
             margin: 0 12px;
         }
         .notice-icon {
-            padding: $header-icon-padding;
+            padding: @header-icon-padding;
             &:hover {
-                background: $header-hover-color;
+                background: @header-hover-color;
             }
         }
         .avatar-container {
             cursor: pointer;
             display: inline-block;
-            padding: $header-icon-padding;
+            padding: @header-icon-padding;
             &:hover {
-                background: $header-hover-color;
+                background: @header-hover-color;
                 transition: 0.5s background;
             }
             .name {
@@ -41,10 +41,23 @@ $header-icon-padding:0 12px;
         padding: 3px 6px;
         &:hover {
             cursor: pointer;
-            background: $header-hover-color;
+            background: @header-hover-color;
         }
     }
     .setting-name {
         padding-left: 10px;
     }
+}
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.trigger:hover {
+    background: #e6f7ff;
+    transition: background .3s;
 }

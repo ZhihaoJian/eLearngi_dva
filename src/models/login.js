@@ -1,9 +1,12 @@
 import {
     userLogin,
     validateCaptcha,
-    register
+    register,
+    userLogout
 } from '../services/login';
+import { routerRedux } from 'dva/router';
 import { message } from 'antd';
+import { Utils } from '../utils/utils';
 
 const UPDATE_NOTICES = 'updateNotices';
 const UPDATE_CAPTCHA_IS_VALID = 'updateCaptchaIsValid';
@@ -28,14 +31,19 @@ export default {
             yield put({ type: UPDATE_NOTICES })
             if (!err && username && password) {
                 const res = yield call(userLogin, { username, password });
-                if (res.success) {
+                if (res && Object.keys(res)) {
                     window.location.href = '/classroom';
-                }else{
-                    message.error(res.msg);
+                } else {
+                    message.error('账号或密码错误');
                 }
             } else {
                 yield put({ type: UPDATE_NOTICES, payload: '请检查账号与密码是否正确' });
             }
+        },
+        *userLogout(_, { put, call }) {
+            yield call(userLogout);
+            Utils.removeItemFromLocalStorage();
+            yield put(routerRedux.push('/login'));
         },
         *checkCaptcha({ payload }, { put, call }) {
             const { data, callback } = payload;

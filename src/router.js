@@ -1,16 +1,49 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
+import { Route, Switch, routerRedux, Link } from 'dva/router'
+import { Button } from 'antd';
 import LoginPage from './routes/Login';
-import RegisterFormPage from './routes/Register'
+import RegisterFormPage from './routes/Register';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import ClassRoomPage from './routes/Classroom';
+import { getRouterData } from './config/router_v2';
+import Authorized from 'ant-design-pro/lib/Authorized';
+import Exception from 'ant-design-pro/lib/Exception';
+const { ConnectedRouter } = routerRedux;
 
-function RouterConfig({ history }) {
+function RouterConfig({ history, app }) {
+  const routerData = getRouterData(app);
+  const BasicLayout = routerData['/'].component;
+  const noMatch = (
+    <Exception
+      type="403"
+      desc='您尚未登录，暂无权查看'
+      actions={(
+        <div><Button type="primary"><Link to='/signin'>去登录</Link></Button></div>
+      )}
+    />);
+
   return (
-    <Router history={history}>
-      <Switch>
-        <Route path="/login" exact component={LoginPage} />
-        <Route path='/register' exact component={RegisterFormPage} />
-      </Switch>
-    </Router>
+    <LocaleProvider locale={zhCN}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          {/* <Authorized path='/' noMatch={noMatch}
+            children={(
+              <BasicLayout>
+                <ClassRoomPage />
+              </BasicLayout>
+            )}
+          /> */}
+          <Route path='/classroom' render={(props) => (
+                     <BasicLayout {...props} >
+                       <ClassRoomPage />
+                     </BasicLayout>
+                   )} />
+          <Route path="/login" exact component={LoginPage} />
+          <Route path='/register' exact component={RegisterFormPage} />
+        </Switch>
+      </ConnectedRouter>
+    </LocaleProvider>
   );
 }
 

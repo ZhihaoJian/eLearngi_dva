@@ -23,10 +23,16 @@ const rq = ({ method, url, params, token, data, ...restParams }) => {
     ...restParams
   })
     .then(response => {
+      /**
+       * http 状态码 在 200下正常返回服务端内容
+       * 501 是服务端无数据，默认返回服务端的success字段，前端需要做处理
+       * 其余情况报错处理
+       * 
+       */
       if (response.status === 200 && response.data.status === 200) {
         return response.data.results;
-      } else if (response.status === 501) {
-        return [];
+      } else if (response.data.status === 501) {
+        return response.data.success;
       } else {
         throw new Error(response.data.msg);
       }

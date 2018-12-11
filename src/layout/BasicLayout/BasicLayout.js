@@ -1,12 +1,14 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
-import { withRouter } from 'react-router-dom';
-import { loadDynamicComponent } from '../../config/router_v2';
+import { NavLink, withRouter } from 'dva/router';
+import { Layout, Menu, Icon } from 'antd';
 import Footer from '../../components/GlobalFooter/GlobalFooter';
 import GlobalHeader from '../../components/GlobalHeader/index';
+import { getMenuData } from '../../config/menu';
 import styles from './index.less';
+import 'ant-design-pro/dist/ant-design-pro.css';
 
 const { Sider, Content } = Layout;
+const MenuItem = Menu.Item;
 
 class BasicLayout extends React.Component {
 
@@ -16,8 +18,7 @@ class BasicLayout extends React.Component {
     };
 
     render() {
-        const { location } = this.props;
-        const { DynamicComponent, formatedMenuData, ...restProps } = loadDynamicComponent({ ...location });
+        const menuData = getMenuData();
         return (
             <Layout id={styles['basic-layout']} >
                 <Sider
@@ -32,11 +33,19 @@ class BasicLayout extends React.Component {
                         </a>
                     </div>
                     <Menu
-                        theme="dark"
+                        theme="light"
                         mode="inline"
-                        selectedKeys={restProps.selectedKeys}
+                        selectedKeys={[this.props.location.pathname]}
                     >
-                        {formatedMenuData}
+                        {
+                            menuData.map(v => (
+                                <MenuItem key={`${v.path}`} >
+                                    <NavLink to={`${v.path + this.props.location.search}`} >
+                                        <Icon type={v.icon} />
+                                        <span>{v.name}</span>
+                                    </NavLink>
+                                </MenuItem>
+                            ))}
                     </Menu>
                 </Sider>
                 <Layout>
@@ -45,9 +54,7 @@ class BasicLayout extends React.Component {
                         toggle={collapsed => this.setState({ collapsed })}
                     />
                     <Content style={{ margin: '24px 24px 0px' }}>
-                        <DynamicComponent
-                            {...restProps}
-                        />
+                        {this.props.children}
                     </Content>
                     <Footer />
                 </Layout>
