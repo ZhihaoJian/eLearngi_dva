@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Card } from 'antd';
-import { Link } from 'react-router-dom';
-import './index.scss';
+import { Link } from 'dva/router';
+import styles from './index.less';
 import Ellipsis from 'ant-design-pro/lib/Ellipsis';
 import PropTypes from 'prop-types';
 const { Meta } = Card;
@@ -44,12 +44,12 @@ export default class CardList extends React.Component {
                 dataSource={data}
                 pagination={pagination}
                 renderItem={item => (
-                    <List.Item className='card-list' >
+                    <List.Item className={styles['card-list']} >
                         {
                             <Card
                                 loading={loading}
                                 hoverable
-                                className='card'
+                                className={styles['card']}
                                 cover={this.renderCard(item).cover}
                                 actions={actions(item)}
                             >
