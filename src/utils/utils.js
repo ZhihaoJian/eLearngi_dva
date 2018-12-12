@@ -56,4 +56,4 @@ const Utils = (function (window) {
     }
 })(window)
 
-export { Utils }
+export default Utils;
