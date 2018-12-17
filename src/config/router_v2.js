@@ -85,6 +85,9 @@ export const getRouterData = app => {
     },
     '/me': {
       component: dynamicWrapper(app, [], () => import('../routes/Me/index'))
+    },
+    '/code-detective':{
+      component: dynamicWrapper(app, ['code'], () => import('../routes/CodeDetect/index'))
     }
   };
 
