@@ -9,6 +9,7 @@ import ClassRoomPage from './routes/Classroom';
 import { getRouterData } from './config/router_v2';
 import Authorized from 'ant-design-pro/lib/Authorized';
 import Exception from 'ant-design-pro/lib/Exception';
+import MePage from './routes/Me';
 const { ConnectedRouter } = routerRedux;
 
 function RouterConfig({ history, app }) {
@@ -34,11 +35,10 @@ function RouterConfig({ history, app }) {
               </BasicLayout>
             )}
           /> */}
-          <Route path='/classroom' render={(props) => (
-                     <BasicLayout {...props} >
-                       <ClassRoomPage />
-                     </BasicLayout>
-                   )} />
+          <BasicLayout>
+            <Route path='/classroom' component={ClassRoomPage}/>
+            <Route path='/me' component={MePage}/>
+          </BasicLayout>
           <Route path="/login" exact component={LoginPage} />
           <Route path='/register' exact component={RegisterFormPage} />
         </Switch>
