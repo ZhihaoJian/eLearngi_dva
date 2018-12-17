@@ -6,7 +6,7 @@ import {
 } from '../services/login';
 import { routerRedux } from 'dva/router';
 import { message } from 'antd';
-import { Utils } from '../utils/utils';
+import Utils from '../utils/utils';
 
 const UPDATE_NOTICES = 'updateNotices';
 const UPDATE_CAPTCHA_IS_VALID = 'updateCaptchaIsValid';

@@ -6,7 +6,7 @@ import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import React from 'react';
 import styles from './index.less';
-import { Utils } from '../../utils/utils';
+import Utils from '../../utils/utils';
 const { Header } = Layout;
 
 const data = [
