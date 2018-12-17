@@ -142,7 +142,8 @@ class GlobalHeader extends React.Component {
 
     render() {
         const noticeData = this.getNoticeData(data);
-        const username = JSON.parse(Utils.getItemFromLocalStorage('user')).username;
+        const userObj = JSON.parse(Utils.getItemFromLocalStorage('user'))
+        const username = userObj ? userObj.username : '';
         const avatarPopMenu = (
             <div className={styles['avatar-pop-menu']} >
                 <div className={styles['menu-item']} ><Icon type="user" className={styles['icon']} /><span className={styles['setting-name']}>个人中心</span></div>
