@@ -10,6 +10,7 @@ import { getRouterData } from './config/router_v2';
 import Authorized from 'ant-design-pro/lib/Authorized';
 import Exception from 'ant-design-pro/lib/Exception';
 import MePage from './routes/Me';
+import CodeDetect from './routes/CodeDetect';
 const { ConnectedRouter } = routerRedux;
 
 function RouterConfig({ history, app }) {
@@ -35,12 +36,13 @@ function RouterConfig({ history, app }) {
               </BasicLayout>
             )}
           /> */}
+          <Route path="/login" exact component={LoginPage} />
+          <Route path='/register' exact component={RegisterFormPage} />
           <BasicLayout>
             <Route path='/classroom' component={ClassRoomPage}/>
             <Route path='/me' component={MePage}/>
+            <Route path='/code-detective' component={CodeDetect} />
           </BasicLayout>
-          <Route path="/login" exact component={LoginPage} />
-          <Route path='/register' exact component={RegisterFormPage} />
         </Switch>
       </ConnectedRouter>
     </LocaleProvider>

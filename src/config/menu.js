@@ -32,7 +32,7 @@ export const menuData = [
   {
     name: '代码相似度检测',
     icon: 'code-o',
-    path: 'similar-code-test'
+    path: 'code-detective'
   },
   {
     name: '个人页',
