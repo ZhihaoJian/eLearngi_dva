@@ -55,8 +55,8 @@ class BasicLayout extends React.Component {
                     />
                     <Content style={{ margin: '24px 24px 0px' }}>
                         {this.props.children}
+                        <Footer />
                     </Content>
-                    <Footer />
                 </Layout>
             </Layout >
         );
