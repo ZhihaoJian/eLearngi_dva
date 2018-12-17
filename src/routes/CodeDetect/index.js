@@ -55,7 +55,8 @@ class CodeDetective extends React.Component {
     handleUpload = (e) => {
         e.stopPropagation();
         this.props.dispatch({
-            type: 'code/uploadFile'
+            type: 'code/uploadFile',
+            payload: { level: this.state.detectLevel.key }
         })
     }
 

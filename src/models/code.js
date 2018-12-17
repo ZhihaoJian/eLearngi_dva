@@ -50,7 +50,7 @@ export default {
                 const { state } = res;
                 yield put({ type: 'renderProcessStepTitle', status: state });
                 const title = yield select(state => state.code.title);
-                
+
                 if (state !== SUCCESS) {
                     yield call(delay, 2000);
                     yield put({
@@ -93,7 +93,7 @@ export default {
                 }
             })
         },
-        *uploadFile(_, { call, put, select }) {
+        *uploadFile({ payload }, { call, put, select }) {
             yield put({
                 type: 'updateState',
                 payload: {
@@ -104,11 +104,14 @@ export default {
                     title: PENDING_TITLE
                 }
             });
+            //根据查重的规则，发送请求
             const { fileList, current } = yield select(state => state.code);
             const formData = new FormData();
             fileList.forEach((file) => {
                 formData.append('files[]', file);
             });
+            formData.append('level', payload.level);
+
             const url = yield call(detectCode, formData);
             yield put({ type: 'fetchProcessQueryStatus', payload: { url } });
             yield put({
