@@ -25,6 +25,11 @@ export const menuData = [
     path: 'examination',
   },
   {
+    name: '备课区',
+    icon: 'book',
+    path: 'prepare-course',
+  },
+  {
     name: '考勤',
     icon: 'pie-chart',
     path: 'attendance',
