@@ -11,7 +11,15 @@ class PrepareCourse extends React.Component {
 
     state = {
         tabActiveKey: '1',
-        cachedCourseList: []
+        cachedCourseList: [],
+        loadingMore: false
+    }
+
+    componentDidMount(){
+        this.props.dispatch({
+            type:'prepareCourse/fetchList',
+            payload:{ current:1,pageSize:10 }
+        })
     }
 
     onTabChange = (tabActiveKey) => {
@@ -22,9 +30,16 @@ class PrepareCourse extends React.Component {
         })
     }
 
+    onDeleteCourse = id => {
+        this.props.dispatch({
+            type:'prepareCourse/deleteCourse',
+            payload: {id}
+        })
+    }
+
     render() {
-        const { tabActiveKey } = this.state;
-        const { cachedCourseList } = this.props;
+        const { tabActiveKey, loadMore } = this.state;
+        const { cachedCourseList, courseList ,loading } = this.props;
         const tabList = [{
             key: '1',
             tab: '备课记录',
@@ -38,9 +53,9 @@ class PrepareCourse extends React.Component {
         }];
         const description = (
             <DescriptionList size="small" col="3" layout="horizontal">
-                <Description term="课程数量">{cachedCourseList.length}</Description>
-                <Description term="已发布">{cachedCourseList.filter(v => v.isRelease === 1).length}</Description>
-                <Description term="未发布">{cachedCourseList.filter(v => v.isRelease === 0).length}</Description>
+                <Description term="课程数量">{courseList.length}</Description>
+                <Description term="已发布">{courseList.filter(v => v.isRelease === 1).length}</Description>
+                <Description term="未发布">{courseList.filter(v => v.isRelease === 0).length}</Description>
             </DescriptionList>
         );
         return (
@@ -60,15 +75,15 @@ class PrepareCourse extends React.Component {
                 >
                     <List
                         className="prepare-course-list"
-                        loading={this.state.loading}
+                        loading={loading}
                         size='large'
                         itemLayout="vertical"
                         pagination={{ pageSize: 5 }}
-                        loadMore={this.state.loadMore}
-                        dataSource={this.state.courseList}
+                        loadMore={loadMore}
+                        dataSource={cachedCourseList}
                         renderItem={item => (
                             <List.Item
-                                extra={<img width={272} alt="cover" src={`/${item.coverURL}`} style={{ width: 200 }} />}
+                                extra={(<img width={272} alt="cover" src={`${item.coverURL}`} />)}
                                 actions={
                                     [
                                         <Link to={`/prepare-course/edit?type=edit&key=${item.id}&name=${encodeURIComponent(item.name)}`}>编辑</Link>,

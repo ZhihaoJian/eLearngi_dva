@@ -1,0 +1,52 @@
+{
+    "proxy": {
+        "/authority": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/teacher": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/detect": {
+            "target": "http://192.168.88.56:5000",
+            "changeOrigin": true
+        },
+        "/status": {
+            "target": "http://192.168.88.56:5000",
+            "changeOrigin": true
+        },
+        "coverImage": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/course": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/courseNode": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/import": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/image": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/coursevideo": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "coursetext": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        },
+        "/grade": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        }
+    }
+}
