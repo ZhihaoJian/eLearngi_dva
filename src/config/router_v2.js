@@ -82,6 +82,9 @@ export const getRouterData = app => {
     },
     '/classroom': {
       component: dynamicWrapper(app, ["classroom"], () => import('../routes/Classroom/index'))
+    },
+    '/me': {
+      component: dynamicWrapper(app, [], () => import('../routes/Me/index'))
     }
   };
 
