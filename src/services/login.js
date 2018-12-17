@@ -1,5 +1,5 @@
 import request from '../utils/request';
-import { Utils } from '../utils/utils';
+import Utils from '../utils/utils';
 
 /**
  * 用户注册
@@ -27,7 +27,6 @@ export async function validateCaptcha(captcha) {
         url: `/authority/verify/${captcha}`,
         method: 'post',
     }).then(res => {
-        console.log(res);
         return res.data
     });
 }

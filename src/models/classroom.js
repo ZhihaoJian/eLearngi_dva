@@ -15,7 +15,10 @@ export default {
         loading: false,
         type: '',           //操作类型。分为'EDIT'与'ADD',
         classList: [],      //班级列表
-        pagination: null,   //分页配置
+        pagination: {
+            current: 0,
+            pageSize: 10
+        },   //分页配置
         classroom: null     //模态框回填信息;
     },
     reducers: {
@@ -23,11 +26,11 @@ export default {
             return {
                 ...state,
                 classList: payload.content,
-                pagination: {
-                    total: payload.totalElements,
-                    current: payload.pageable.pageNumber + 1,
-                    pageSize: payload.pageSize
-                }
+                // pagination: {
+                //     total: payload.totalElements,
+                //     current: payload.pageable.pageNumber + 1,
+                //     pageSize: payload.pageSize
+                // }    
             }
         },
         updateClassList(state, { payload }) {
@@ -62,10 +65,7 @@ export default {
         *fetchClassRoomList({ payload }, { put, call }) {
             yield put({ type: SET_LOADING, payload: true })
             const res = yield call(getClass, payload);
-            if (res.success) {
-                //TODO:
-                yield put({ type: UPDATE_STATE, payload: res.data })
-            }
+            yield put({ type: UPDATE_STATE, payload: res })
             yield put({ type: SET_LOADING, payload: false })
         },
         *deleteClassroom({ payload }, { put, call, select }) {
@@ -104,10 +104,7 @@ export default {
             }
         },
         *cancelEditClass({ payload }, { put, call, select }) {
-            const { current, pageSize } = yield select(state => state.classroom.pagination);
             yield put({ type: CANCEL_EDIT, payload });
-            Utils.success();
-            yield put({ type: 'fetchClassRoomList', payload: { current, pageSize } })
         }
     }
 }

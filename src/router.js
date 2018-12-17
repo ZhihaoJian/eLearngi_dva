@@ -9,6 +9,9 @@ import ClassRoomPage from './routes/Classroom';
 import { getRouterData } from './config/router_v2';
 import Authorized from 'ant-design-pro/lib/Authorized';
 import Exception from 'ant-design-pro/lib/Exception';
+import MePage from './routes/Me';
+import CodeDetect from './routes/CodeDetect';
+import PrepareCourse from './routes/PrepareCourse';
 const { ConnectedRouter } = routerRedux;
 
 function RouterConfig({ history, app }) {
@@ -19,7 +22,7 @@ function RouterConfig({ history, app }) {
       type="403"
       desc='您尚未登录，暂无权查看'
       actions={(
-        <div><Button type="primary"><Link to='/signin'>去登录</Link></Button></div>
+        <div><Button type="primary"><Link to='/login'>去登录</Link></Button></div>
       )}
     />);
 
@@ -34,13 +37,14 @@ function RouterConfig({ history, app }) {
               </BasicLayout>
             )}
           /> */}
-          <Route path='/classroom' render={(props) => (
-                     <BasicLayout {...props} >
-                       <ClassRoomPage />
-                     </BasicLayout>
-                   )} />
           <Route path="/login" exact component={LoginPage} />
           <Route path='/register' exact component={RegisterFormPage} />
+          <BasicLayout>
+            <Route path='/classroom' component={ClassRoomPage}/>
+            <Route path='/me' component={MePage}/>
+            <Route path='/code-detective' component={CodeDetect} />
+            <Route path='/prepare-course' component={PrepareCourse} />
+          </BasicLayout>
         </Switch>
       </ConnectedRouter>
     </LocaleProvider>

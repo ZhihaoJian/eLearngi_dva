@@ -1,6 +1,6 @@
 export const menuData = [
   {
-    name: 'dashboard',
+    name: '班级列表',
     icon: 'dashboard',
     path: 'classroom',
     breadcrumbName: '首页',
@@ -25,6 +25,11 @@ export const menuData = [
     path: 'examination',
   },
   {
+    name: '备课区',
+    icon: 'book',
+    path: 'prepare-course',
+  },
+  {
     name: '考勤',
     icon: 'pie-chart',
     path: 'attendance',
@@ -32,7 +37,12 @@ export const menuData = [
   {
     name: '代码相似度检测',
     icon: 'code-o',
-    path: 'similar-code-test'
+    path: 'code-detective'
+  },
+  {
+    name: '个人页',
+    icon: 'user-o',
+    path: 'me'
   }
 ];
 

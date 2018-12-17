@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Cascader } from 'antd';
+import { connect } from 'dva';
 import PropTypes from 'prop-types';
 import { ADD } from './const';
 // import { fetchProvinceList } from '../../service/Province.service';
@@ -9,13 +10,7 @@ const { TextArea } = Input;
 class EditModal extends React.Component {
 
     state = {
-        provinceList: [],
         schoolList: []
-    }
-
-    componentDidMount() {
-        // fetchProvinceList()
-        //     .then(provinceList => this.setState({ provinceList }));
     }
 
     onOk = () => {
@@ -92,4 +87,8 @@ EditModal.defaultProps = {
     classroom: null
 }
 
-export default EditModal = Form.create()(EditModal);
+function mapStateToProps(state) {
+    return { provinceList: state.global.province }
+}
+
+export default connect(mapStateToProps)(Form.create()(EditModal));

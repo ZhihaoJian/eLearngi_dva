@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { message } from 'antd';
-import { Utils } from "./utils";
+import Utils from "./utils";
 
 /**
  * 30分钟刷新一次token验证
@@ -24,12 +24,12 @@ const rq = ({ method, url, params, token, data, ...restParams }) => {
   })
     .then(response => {
       /**
-       * http 状态码 在 200下正常返回服务端内容
+       * http 状态码 在 200下正常返回服务端内容, 304读缓存
        * 501 是服务端无数据，默认返回服务端的success字段，前端需要做处理
        * 其余情况报错处理
        * 
        */
-      if (response.status === 200 && response.data.status === 200) {
+      if ((response.status === 200 || response.status === 304) && response.data.status === 200) {
         return response.data.results;
       } else if (response.data.status === 501) {
         return response.data.success;

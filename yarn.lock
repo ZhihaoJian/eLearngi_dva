@@ -1256,30 +1256,31 @@ ant-design-palettes@^1.1.3:
   dependencies:
     tinycolor2 "^1.4.1"
 
-ant-design-pro@1.3.0:
-  version "1.3.0"
-  resolved "http://registry.npm.taobao.org/ant-design-pro/download/ant-design-pro-1.3.0.tgz#43d4eabd5e8397e99570c93a7b1d82ba20220e98"
+ant-design-pro@1.4.4:
+  version "1.4.4"
+  resolved "http://registry.npm.taobao.org/ant-design-pro/download/ant-design-pro-1.4.4.tgz#d837f6d820168dde6a54a2682c28725ca5c63b14"
+  integrity sha1-2Df22CAWjd5qVKJoLChyXKXGOxQ=
   dependencies:
     "@antv/data-set" "^0.8.0"
     "@babel/polyfill" "^7.0.0-beta.36"
-    babel-runtime "^6.9.2"
-    bizcharts "^3.1.3-beta.1"
+    bizcharts "^3.1.10"
     bizcharts-plugin-slider "^2.0.1"
     classnames "^2.2.5"
     enquire-js "^0.2.1"
-    lodash "^4.17.4"
-    lodash-decorators "^4.4.1"
-    moment "^2.19.1"
+    lodash "^4.17.10"
+    lodash-decorators "^6.0.0"
+    moment "^2.19.3"
     numeral "^2.0.6"
     omit.js "^1.0.0"
     path-to-regexp "^2.1.0"
     prop-types "^15.5.10"
     qs "^6.5.0"
-    rc-drawer-menu "^0.5.0"
-    react-container-query "^0.9.1"
+    rc-drawer "^1.2.0"
+    react-container-query "^0.11.0"
     react-document-title "^2.0.3"
     react-fittext "^1.0.0"
     rollbar "^2.3.4"
+    setprototypeof "^1.1.0"
     url-polyfill "^1.0.10"
 
 antd@^3.11.1:
@@ -1956,7 +1957,7 @@ bizcharts-plugin-slider@^2.0.1:
   dependencies:
     "@antv/g2-plugin-slider" "2.1.0"
 
-bizcharts@^3.1.3-beta.1:
+bizcharts@^3.1.10:
   version "3.4.1"
   resolved "http://registry.npm.taobao.org/bizcharts/download/bizcharts-3.4.1.tgz#2b91b0adb0209cd947d9552377b5c58a02379403"
   dependencies:
@@ -2624,12 +2625,10 @@ constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/constants-browserify/download/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
 
-container-query-toolkit@0.1.1:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/container-query-toolkit/download/container-query-toolkit-0.1.1.tgz#197ec8582d119cd9609bf7cf0ed6b1dc0f8d7f83"
-  dependencies:
-    element-resize-detector "1.1.10"
-    lodash "4.17.4"
+container-query-toolkit@0.1.3:
+  version "0.1.3"
+  resolved "http://registry.npm.taobao.org/container-query-toolkit/download/container-query-toolkit-0.1.3.tgz#79ece9fe491d9187b7051247067f1faac6ce00b0"
+  integrity sha1-eezp/kkdkYe3BRJHBn8fqsbOALA=
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -3483,15 +3482,10 @@ electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.47:
   version "1.3.88"
   resolved "http://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.88.tgz#f36ab32634f49ef2b0fdc1e82e2d1cc17feb29e7"
 
-element-resize-detector@1.1.10:
-  version "1.1.10"
-  resolved "http://registry.npm.taobao.org/element-resize-detector/download/element-resize-detector-1.1.10.tgz#512ca38e1a27b3f6582a83ea0dfed1ba1abab56d"
-  dependencies:
-    batch-processor "^1.0.0"
-
-element-resize-detector@1.1.11:
-  version "1.1.11"
-  resolved "http://registry.npm.taobao.org/element-resize-detector/download/element-resize-detector-1.1.11.tgz#34dc9aff624239e0ebdba6cdadeeae88a4cf0b1b"
+element-resize-detector@1.1.13:
+  version "1.1.13"
+  resolved "http://registry.npm.taobao.org/element-resize-detector/download/element-resize-detector-1.1.13.tgz#f61907e98a91b1ad215f92790bc15113df68444d"
+  integrity sha1-9hkH6YqRsa0hX5J5C8FRE99oRE0=
   dependencies:
     batch-processor "^1.0.0"
 
@@ -6107,11 +6101,12 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-decorators@^4.4.1:
-  version "4.5.0"
-  resolved "http://registry.npm.taobao.org/lodash-decorators/download/lodash-decorators-4.5.0.tgz#a4bb63dfbb512f0dd9409f7af452e4e2edcb80f4"
+lodash-decorators@^6.0.0:
+  version "6.0.0"
+  resolved "http://registry.npm.taobao.org/lodash-decorators/download/lodash-decorators-6.0.0.tgz#4e0639ba639d738e5f4993acf54bf292cc95d851"
+  integrity sha1-TgY5umOdc45fSZOs9UvyksyV2FE=
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.2"
 
 lodash-es@^4.17.5, lodash-es@^4.2.1:
   version "4.17.11"
@@ -6198,13 +6193,9 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "http://registry.npm.taobao.org/lodash.uniq/download/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.*, "lodash@>=3.5 <5", lodash@^4.13.1, lodash@^4.15.0, lodash@^4.16.5, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@~4.17.4:
+"lodash@>=3.5 <5", lodash@^4.13.1, lodash@^4.15.0, lodash@^4.16.5, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-
-lodash@4.17.4:
-  version "4.17.4"
-  resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 loglevel@^1.4.1:
   version "1.6.1"
@@ -6491,7 +6482,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@
   dependencies:
     minimist "0.0.8"
 
-moment@2.x, moment@^2.19.1, moment@^2.22.2:
+moment@2.x, moment@^2.19.3, moment@^2.22.2:
   version "2.22.2"
   resolved "http://registry.npm.taobao.org/moment/download/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -7139,7 +7130,8 @@ path-to-regexp@^1.0.1, path-to-regexp@^1.7.0:
 
 path-to-regexp@^2.1.0, path-to-regexp@^2.4.0:
   version "2.4.0"
-  resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
+  integrity sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -7831,15 +7823,7 @@ rc-dialog@~7.2.1:
     rc-animate "2.x"
     rc-util "^4.4.0"
 
-rc-drawer-menu@^0.5.0:
-  version "0.5.7"
-  resolved "http://registry.npm.taobao.org/rc-drawer-menu/download/rc-drawer-menu-0.5.7.tgz#2ae38cee43a748b486c9f39ea3faee78e36c40ce"
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-    prop-types "^15.5.0"
-
-rc-drawer@~1.7.6:
+rc-drawer@^1.2.0, rc-drawer@~1.7.6:
   version "1.7.6"
   resolved "http://registry.npm.taobao.org/rc-drawer/download/rc-drawer-1.7.6.tgz#925ce0768cf81ef5fa83eb22d90c603422b1b1b1"
   dependencies:
@@ -8133,13 +8117,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-container-query@^0.9.1:
-  version "0.9.1"
-  resolved "http://registry.npm.taobao.org/react-container-query/download/react-container-query-0.9.1.tgz#57136d98c1ada18084b27cb45a0006a9f03a95d6"
+react-container-query@^0.11.0:
+  version "0.11.0"
+  resolved "http://registry.npm.taobao.org/react-container-query/download/react-container-query-0.11.0.tgz#b07ac2794612499dd8f2d1759b72e9c415e53567"
+  integrity sha1-sHrCeUYSSZ3Y8tF1m3LpxBXlNWc=
   dependencies:
-    container-query-toolkit "0.1.1"
-    lodash "4.*"
-    resize-observer-lite "0.2.2"
+    container-query-toolkit "0.1.3"
+    resize-observer-lite "0.2.3"
 
 react-dev-utils@^5.0.0:
   version "5.0.3"
@@ -8657,11 +8641,12 @@ reselect@^3.0.1:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/reselect/download/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
 
-resize-observer-lite@0.2.2:
-  version "0.2.2"
-  resolved "http://registry.npm.taobao.org/resize-observer-lite/download/resize-observer-lite-0.2.2.tgz#fa441231bb1bd8204e00729042ec67ea608eca1b"
+resize-observer-lite@0.2.3:
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/resize-observer-lite/download/resize-observer-lite-0.2.3.tgz#b557f378e2ce9b9aab1dc71a91047bd7ed1d8915"
+  integrity sha1-tVfzeOLOm5qrHccakQR71+0diRU=
   dependencies:
-    element-resize-detector "1.1.11"
+    element-resize-detector "1.1.13"
 
 resize-observer-polyfill@^1.5.0:
   version "1.5.1"
@@ -8989,7 +8974,7 @@ setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "http://registry.npm.taobao.org/setimmediate/download/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
 
-setprototypeof@1.1.0:
+setprototypeof@1.1.0, setprototypeof@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
 
@@ -9769,7 +9754,7 @@ ts-jest-babel-7@^22.0.6:
     source-map-support "^0.5.0"
     yargs "^11.0.0"
 
-tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.3:
+tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.2, tslib@^1.9.3:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
