@@ -1,8 +1,8 @@
 {
-  "proxy": {
-    "/authority": {
-      "target": "http://134.175.32.71:9090/",
-      "changeOrigin": true
+    "proxy":{
+      "/authority": {
+            "target": "http://134.175.32.71:9090/",
+            "changeOrigin": true
+        }
     }
-  }
 }
