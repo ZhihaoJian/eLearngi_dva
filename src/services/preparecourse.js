@@ -10,7 +10,15 @@ export async function fetchPrepareCourseList(data = {}) {
 
 export async function deleteCourse(id) {
     return request({
-        url:`/course/delCourse/${id}`,
-        method:'delete'
+        url: `/course/delCourse/${id}`,
+        method: 'delete'
+    })
+}
+
+export async function addCourse(data) {
+    return request({
+        url: `/course/addCourse`,
+        method: 'post',
+        data
     })
 }
