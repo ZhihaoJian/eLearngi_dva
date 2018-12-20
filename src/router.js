@@ -12,6 +12,7 @@ import Exception from 'ant-design-pro/lib/Exception';
 import MePage from './routes/Me';
 import CodeDetect from './routes/CodeDetect';
 import PrepareCourse from './routes/PrepareCourse';
+import AddNote from './routes/PrepareCourse/AddNote';
 const { ConnectedRouter } = routerRedux;
 
 function RouterConfig({ history, app }) {
@@ -43,7 +44,8 @@ function RouterConfig({ history, app }) {
             <Route path='/classroom' component={ClassRoomPage}/>
             <Route path='/me' component={MePage}/>
             <Route path='/code-detective' component={CodeDetect} />
-            <Route path='/prepare-course' component={PrepareCourse} />
+            <Route exact path='/prepare-course/' component={PrepareCourse} />
+            <Route path='/prepare-course/edit' component={AddNote} />
           </BasicLayout>
         </Switch>
       </ConnectedRouter>
