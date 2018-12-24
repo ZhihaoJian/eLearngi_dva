@@ -2,21 +2,43 @@ import React from 'react';
 import PageHeaderLayout from '../../layout/PageHeaderLayout';
 import qs from 'query-string';
 import ButtonGroup from 'antd/lib/button/button-group';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import DrawerTree from './components/Drawer';
 import Editor from './components/Editor';
 import { connect } from 'dva';
+import BraftEditor from 'braft-editor';
 
 // 备课详情 目录树
 class AddNote extends React.Component {
 
-    state = { visible: false };
+    state = {
+        editorSpinning: false,
+        visible: false,
+        editorState: null
+    };
 
     showDrawer = () => {
         this.setState({
             visible: true,
         });
     };
+
+    /**
+     * 更新编辑器实例
+     * @params {string | object} payload
+     */
+    updateEditorState = (payload) => {
+        if (typeof payload === 'string') {
+            this.setState({
+                editorState: BraftEditor.createEditorState(payload),
+                editorSpinning: false
+            })
+        } else {
+            this.setState({ editorState: payload, editorSpinning: false })
+        }
+    }
+
+    enableEditorSpinning = () => this.setState({ editorSpinning: true })
 
     onClose = () => {
         this.setState({
@@ -26,7 +48,7 @@ class AddNote extends React.Component {
 
     render() {
         const { type, name, key } = qs.parse(window.location.search);
-        const { visible } = this.state;
+        const { visible, editorState, editorSpinning } = this.state;
         return (
             <PageHeaderLayout
                 title={(
@@ -44,11 +66,18 @@ class AddNote extends React.Component {
                 )}
             >
                 <DrawerTree
+                    enableEditorSpinning={this.enableEditorSpinning.bind(this)}
+                    updateEditorState={content => this.updateEditorState(content)}
                     name={name}
                     visible={visible}
                     onClose={this.onClose.bind(this)}
                 />
-                <Editor />
+                <Spin spinning={editorSpinning} >
+                    <Editor
+                        updateEditorState={editorState => this.updateEditorState(editorState)}
+                        editorState={editorState}
+                    />
+                </Spin>
             </PageHeaderLayout>
         )
     }

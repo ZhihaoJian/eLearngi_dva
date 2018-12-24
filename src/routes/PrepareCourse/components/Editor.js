@@ -5,27 +5,24 @@ import { connect } from 'dva';
 
 class Editor extends React.Component {
 
-    state = {
-        editorState: null
-    }
-
     submitContent = async () => {
         // 在编辑器获得焦点时按下ctrl+s会执行此方法
         // 编辑器内容提交到服务端之前，可直接调用editorState.toHTML()来获取HTML格式的内容
-        const htmlContent = this.state.editorState.toHTML()
+        const htmlContent = this.props.editorState.toHTML();
         // const result = await saveEditorContent(htmlContent)
     }
 
     handleEditorChange = (editorState) => {
-        this.setState({ editorState })
+        this.props.updateEditorState(editorState)
     }
 
     render() {
-        const { editorState } = this.state
+        const { editorState } = this.props;
         return (
             <div style={{ backgroundColor: "#fff" }} >
                 <BraftEditor
                     value={editorState}
+                    placeholder='请输入文案'
                     onChange={this.handleEditorChange}
                     onSave={this.submitContent}
                 />

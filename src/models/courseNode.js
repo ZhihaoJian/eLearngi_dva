@@ -30,8 +30,6 @@ export default {
          * @param {object} params 针对CRUD的参数
          */
         *updateTree({ parentNode, node, type, params }, { put, call, select }) {
-            const oldTreeData = yield select(state => state.courseNode.treeData);
-            const combineTree = [...oldTreeData];
             const { ADD, UPDATE, DEL } = operation;
 
             if (type === ADD && parentNode) {
@@ -61,8 +59,8 @@ export default {
                 parentNode = yield put({ type: 'fetchParentNode', node });
                 if (parentNode) {
                     //记录删除节点的父节点id,方便做父节点children刷新
-                    p_id = parentNode.id;
-                    id = node.id;
+                    p_id = parentNode.props.id;
+                    id = node.props.id;
 
                     //TODO: 获取节点id将其删除
                     yield call(deleteNode, id);
@@ -72,8 +70,17 @@ export default {
                     yield put({ type: 'fetchRootNode', payload: { ...params } })
                 }
 
-            } else if (type === UPDATE && parentNode) {
-                
+            } else if (type === UPDATE && (parentNode || node)) {
+                if (node && parentNode == null) {
+                    parentNode = yield put({ type: 'fetchParentNode', node });
+                }
+                //更新节点名称
+                yield call(updateNodeName, {
+                    id: node.props.id,
+                    ...params
+                });
+                //刷新父节点
+                yield call(dynamicLoadNode, { id: parentNode.props.id })
             }
         },
         /**
@@ -86,7 +93,7 @@ export default {
 
             let parentNode;
             const treeData = yield select(state => state.courseNode.treeData);
-            let cachedParentNode = treeData;   //记录循环子节点的父节点
+            let cachedParentNode = [...treeData];   //记录循环子节点的父节点
 
             // 例如 [0,0,1] 代表第0层第2个节点，第0层是0-0，第0层第1个事0-0-0，第0层第2个事0-0-1
             // 实际上我们会从keyArray下标为1位置开始遍历 --> [0,1]
@@ -110,25 +117,68 @@ export default {
                 })
             }
         },
+        // 更新指定节点，更新Redux中的树
+        *updateNode({ node }, { select, put }) {
+            if (node == null) return;
+
+            let parentNode;
+            const oldTreeData = yield select(state => state.courseNode.treeData);
+            let cachedData = [...oldTreeData];
+
+            const _updateNode = (node) => {
+                //查找父节点
+                const key = node.event ? node.event.keys : node.parentKey;
+                const keys = key.split('-').map(v => Number.parseInt(v, 10));
+                //获取指定节点的node key 数组，从1开始
+                const keyArray = keys.slice(1, keys.length);
+                let cachedParentNode = cachedData;
+
+                keyArray.forEach(r => {
+                    parentNode = cachedParentNode[r];
+                    cachedParentNode = parentNode.children;
+                });
+
+                //更新节点到父节点下
+                if (parentNode.children) {
+                    let tmpIdx; // 缓存相同结果的位置
+
+                    const hasSameNode = parentNode.children.filter((v, idx) => {
+                        const p_key = v.event ? v.event.keys : v.nodeKey,
+                            q_key = node.event ? node.event.keys : node.nodeKey;
+                        if (p_key === q_key) {
+                            tmpIdx = idx;
+                            return true;
+                        }
+                        return false;
+                    }).length > 0;
+                    //替换原先的node节点
+                    if (hasSameNode) parentNode.children[tmpIdx] = node;
+                    else parentNode.children.push(node);
+                } else {
+                    parentNode.children = [node];
+                }
+            }
+
+            //如果是数组，则一定是后台请求回来，否则是用户点击界面的treenode对象
+            if (Object.prototype.toString.call(node) === "[object Array]") {
+                node.forEach(v => _updateNode(v));
+            } else
+                _updateNode(node);
+
+            yield put({ type: 'updateState', payload: { treeData: cachedData } });
+        },
         //根据父节点，加载子节点
-        *dynamicLoadNode({ payload }, { call, put, select }) {
+        *dynamicLoadNode({ payload }, { call, put }) {
             const res = yield call(dynamicLoadNode, payload);
             if (res) {
-                const treeData = yield select(state => state.courseNode.treeData);
-            }
-        },
-        //更新节点名称
-        *updateNodeName({ payload }, { call, put }) {
-            const res = yield call(updateNodeName, payload);
-            if (res) {
-
+                yield put({ type: 'updateNode', node: res });
             }
         },
         //根据节点，加载文本
         *loadFile({ payload }, { call, put }) {
             const res = yield call(loadFile, payload);
             if (res) {
-
+                return res.content;
             }
         }
     },
