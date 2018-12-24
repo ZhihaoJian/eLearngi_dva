@@ -3,8 +3,10 @@ import {
     dynamicLoadNode,
     updateNodeName,
     loadFile,
-    deleteNode
+    deleteNode,
+    updateFileContent
 } from '../services/courseNode';
+import { message } from 'antd';
 
 export const operation = {
     ADD: 'ADD',
@@ -15,7 +17,9 @@ export const operation = {
 export default {
     namespace: 'courseNode',
     state: {
-        treeData: []
+        treeData: [],
+        selectedKey: '',
+        selectedId: ''
     },
     effects: {
         /**
@@ -176,9 +180,17 @@ export default {
         },
         //根据节点，加载文本
         *loadFile({ payload }, { call, put }) {
-            const res = yield call(loadFile, payload);
+            const { id, selectedKey, selectedId } = payload
+            const res = yield call(loadFile, id);
+            yield put({ type: 'updateState', payload: { selectedKey, selectedId } })
             if (res) {
                 return res.content;
+            }
+        },
+        *updateFileContent({ payload }, { put, call }) {
+            const res = yield call(updateFileContent, payload);
+            if (res) {
+                message.success('更新成功')
             }
         }
     },

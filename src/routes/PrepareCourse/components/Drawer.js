@@ -24,12 +24,18 @@ class DrawerTree extends React.Component {
 
     onSelect = (expandedKeys, { selected, selectedNodes, node }) => {
         if (selected) {
-            this.props.enableEditorSpinning();
-            this.props.dispatch({
-                type: 'courseNode/loadFile',
-                payload: node.props.dataRef.id
+            const { enableEditorSpinning, dispatch, updateEditorState } = this.props;
+            const id = node.props.dataRef.id;
+            enableEditorSpinning();
+            dispatch({
+                type: 'courseNode/loadFile', 
+                payload: {
+                    id,
+                    selectedId: id,
+                    selectedKey: node.props.eventKey
+                }
             }).then((content) => {
-                this.props.updateEditorState(content);
+                updateEditorState(content);
             });
         }
     }

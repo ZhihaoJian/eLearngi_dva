@@ -141,7 +141,7 @@ export default {
 
     [`GET /courseNode/loadFile/:id`]: (req, res) => {
         const data = {
-            '1':`
+            '1': `
             Create React apps with no build configuration.
 
             Creating an App – How to create a new app.
@@ -149,17 +149,17 @@ export default {
             Create React App works on macOS, Windows, and Linux.
             If something doesn’t work, please file an issue.
             `,
-            '2':`
+            '2': `
             Node.js是一个能够在服务器端运行JavaScript的开放源代码、跨平台JavaScript 运行环境。Node.js由Node.js基金会持有和维护，并与Linux基金会有合作关系
             `,
-            '3':`
+            '3': `
             React（有时叫React.js或ReactJS）是一个为数据提供渲染为HTML视图的开源JavaScript 库。React视图通常采用包含以自定义HTML标记规定的其他组件的组件渲染。React为程序员提供了一种子组件不能直接影响外层组件（"data flows down"）的模型，数据改变时对HTML文档的有效更新，和现代单页应用中组件之间干净的分离。
 
 它由Facebook、Instagram和一个由个人开发者和企业组成的社群维护。[2][3][4]根据JavaScript分析服务Libscore，React目前正在被Netflix、Imgur、Bleacher Report、Feedly、Airbnb、SeatGeek、HelloSign等很多网站的主页使用。[5]
 
 截至2015年1月，React和React Native在GitHub上的加星数量是Facebook位列第二的开源项目，[6]也是GitHub有史以来星标第九多的项目。[7]
             `,
-            '4':`
+            '4': `
             Angular 是基于 TypeScript 的 Javascript 框架。由 Google 进行开发和维护，它被描述为“超级厉害的 JavaScript MVW 框架”。Angular（也被称为 “Angular 2+”，“Angular 2” 或者 “ng2”）已被重写，是与 AngularJS（也被称为 “Angular.js” 或 “AngularJS 1.x”）不兼容的后续版本。当 AngularJS（旧版本）最初于2010年10月发布时，仍然在修复 bug，等等 —— 新的 Angular（sans JS）于 2016 年 9 月推出版本 2。最新的主版本是 4，因为版本 3 被跳过了。Google，Vine，Wix，Udemy，weather.com，healthcare.gov 和 Forbes 都使用 Angular（根据 madewithangular，stackshare 和 libscore.com 提供的数据）。
 React 被描述为 “用于构建用户界面的 JavaScript 库”。React 最初于 2013 年 3 月发布，由 Facebook 进行开发和维护，Facebook 在多个页面上使用 React 组件（但不是作为单页应用程序）。根据 Chris Cordle 这篇文章的统计，React 在 Facebook 上的使用远远多于 Angular 在 Google 上的使用。React 还被 Airbnb，Uber，Netflix，Twitter，Pinterest，Reddit，Udemy，Wix，Paypal，Imgur，Feedly，Stripe，Tumblr，Walmart 等使用（根据 Facebook, stackshare 和 libscore.com 提供的数据）。
 Facebook 正在开发 React Fiber。它会改变 React 的底层 - 渲染速度应该会更快 - 但是在变化之后，版本会向后兼容。Facebook 将会在 2017 年 4 月的开发者大会上讨论新变化，并发布一篇非官方的关于新架构的文章。React Fiber 可能与 React 16 一起发布。
@@ -172,6 +172,16 @@ Angular 和 Vue 都遵守 MIT license 许可，而 React 遵守 BSD3-license 许
             "results": {
                 content: data[req.params.id]
             },
+            "status": 200,
+            "success": true
+        }
+        res.send(response);
+    },
+
+    [`POST /courseNode/updateContentById`]: (req, res) => {
+        const response = {
+            "msg": "string",
+            "results": {},
             "status": 200,
             "success": true
         }
