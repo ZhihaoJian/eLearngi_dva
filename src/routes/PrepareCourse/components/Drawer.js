@@ -28,7 +28,7 @@ class DrawerTree extends React.Component {
     }
 
     onSelect = (expandedKeys, { selected, selectedNodes, node }) => {
-        if (selected) {
+        if (selected && node.props.dataRef.leaf) {
             const { enableEditorSpinning, dispatch, updateEditorState } = this.props;
             const id = node.props.dataRef.id;
             enableEditorSpinning();
