@@ -1,7 +1,12 @@
 import React from 'react';
-import { Drawer, Tree, Spin } from 'antd';
+import ReactDOM from 'react-dom';
+import { Drawer, Tree, Spin, Tooltip, Popconfirm, Input } from 'antd';
 import qs from 'query-string';
 import { connect } from 'dva';
+import { operation } from '../../../models/courseNode';
+import styles from '../styles/DrawerTree.less';
+
+const { ADD, DEL, UPDATE, ADD_FOLDER, ADD_VIDEO_RESOURCE } = operation;
 
 const DirectoryTree = Tree.DirectoryTree;
 const { TreeNode } = Tree;
@@ -28,7 +33,7 @@ class DrawerTree extends React.Component {
             const id = node.props.dataRef.id;
             enableEditorSpinning();
             dispatch({
-                type: 'courseNode/loadFile', 
+                type: 'courseNode/loadFile',
                 payload: {
                     id,
                     selectedId: id,
@@ -76,8 +81,85 @@ class DrawerTree extends React.Component {
         });
     }
 
+     /**
+     * 点击context menu
+     */
+    onContextMenuClick = (e) => {
+        e.stopPropagation();
+        
+    }
+
+    getContainer() {
+        if (!this.cmContainer) {
+            this.cmContainer = document.createElement('div');
+            document.body.appendChild(this.cmContainer);
+        }
+        return this.cmContainer;
+    }
+
+    renderCm(event, menu) {
+        if (this.menu) {
+            ReactDOM.unmountComponentAtNode(this.cmContainer);
+            this.menu = null;
+        }
+        this.menu = (
+            <Tooltip
+                trigger='click'
+                defaultVisible
+                overlay={(
+                    <div className={styles['context-menu']} onClick={(e) => this.onContextMenuClick(e)} >{menu}</div>
+                )}
+            >
+            </Tooltip>
+        );
+
+        const container = this.getContainer();
+        Object.assign(this.cmContainer.style, {
+            position: 'absolute',
+            left: `${event.pageX}px`,
+            top: `${event.pageY + 10}px`,
+        });
+
+        ReactDOM.render(this.menu, container);
+    }
+
+    /**
+     * 根据不同结点生成不同的context menu
+     * @param 当前结点
+     */
+    generateMenuTooltip = (dataRef) => {
+        let menu,
+            fileName = dataRef.title;
+        menu = (
+            <React.Fragment>
+                {
+                    dataRef.leaf ? null : (
+                        <React.Fragment>
+                            <div className={ADD} ><span>新建文件</span></div>
+                            <div className={ADD_FOLDER} ><span>新建文件夹</span></div>
+                            <div className={ADD_VIDEO_RESOURCE} onClick={() => this.onUploadResource()} ><span>上传视频资源</span></div>
+                        </React.Fragment>
+                    )
+                }
+                <Popconfirm
+                    title={<Input defaultValue={fileName} onChange={(e) => this.setState({ fileName: e.target.value })} />}
+                    onConfirm={this.onComfirmUpdate}
+                    okText='确定'
+                    placement='left'
+                    cancelText='取消 '
+                >
+                    <div className={UPDATE} ><span>修改名称</span></div>
+                </Popconfirm>
+                <div className={DEL} ><span>删除</span></div>
+            </React.Fragment>
+        )
+        return menu;
+    }
+
     onRightClick = ({ event, node }) => {
         const nodeKey = node.props.eventKey;
+        let menu = this.generateMenuTooltip(node.props.dataRef);
+        this.renderCm(event, menu);
     }
 
     render() {

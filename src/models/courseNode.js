@@ -11,7 +11,9 @@ import { message } from 'antd';
 export const operation = {
     ADD: 'ADD',
     DEL: 'DEL',
-    UPDATE: 'UPDATE'
+    UPDATE: 'UPDATE',
+    ADD_FOLDER: 'ADD_FOLDER',
+    ADD_VIDEO_RESOURCE: 'ADD_VIDEO_RESOURCE'
 }
 
 export default {
