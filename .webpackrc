@@ -3,6 +3,10 @@
       "/authority": {
             "target": "http://134.175.32.71:9090/",
             "changeOrigin": true
+        },
+        "/detect": {
+            "target": "http://111.230.37.176",
+            "changeOrigin": true
         }
     }
 }
