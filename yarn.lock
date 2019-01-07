@@ -10138,7 +10138,7 @@ rmc-feedback@^2.0.0:
     babel-runtime "6.x"
     classnames "^2.2.5"
 
-roadhog@^2.0.0:
+roadhog@2.4.9:
   version "2.4.9"
   resolved "http://registry.npm.taobao.org/roadhog/download/roadhog-2.4.9.tgz#533e42869aa7cef7791f542abc0377cb5d27607b"
   integrity sha1-Uz5Chpqnzvd5H1QqvAN3y10nYHs=
