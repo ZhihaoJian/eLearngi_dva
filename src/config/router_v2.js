@@ -91,6 +91,9 @@ export const getRouterData = app => {
     },
     '/prepare-course': {
       component: dynamicWrapper(app, ['prepareCourse'], () => import('../routes/PrepareCourse/index'))
+    },
+    '/exam':{
+      component:dynamicWrapper(app,[],()=>import('../routes/Exam/index'))
     }
   };
 

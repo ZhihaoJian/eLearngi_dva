@@ -22,7 +22,7 @@ export const menuData = [
   {
     name: '测评',
     icon: 'book',
-    path: 'examination',
+    path: 'exam',
   },
   {
     name: '备课区',
