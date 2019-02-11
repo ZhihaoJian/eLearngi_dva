@@ -35,7 +35,7 @@ class BasicLayout extends React.Component {
                     <Menu
                         theme="light"
                         mode="inline"
-                        selectedKeys={[this.props.location.pathname]}
+                        selectedKeys={[...this.props.location.pathname.split('/')]}
                     >
                         {
                             menuData.map(v => (
